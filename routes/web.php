@@ -81,9 +81,21 @@ Route::get('/hotel' , function() {
 
 Route::post('/verifyHotelLogin', 'HotelsController@verify');
 
-/**
- * 
- */
-Route::get('/dashboard' , function() {
+/* 
+| ---------------------------------------
+| Hotel Management 
+| ---------------------------------------
+*/
+Route::get('/hotel/dashboard' , function() {
     return view('Hotel/dashboard');
 });
+
+Route::get('/hotel/publishAvailability' , 'HotelsController@publishAvailability');
+
+Route::post('/hotel/addAvailability' , 'HotelsController@addAvailability');
+
+Route::get('/hotel/viewPublishedAvailability', function() {
+    return view('Hotel/viewPublishedAvailability');
+});
+
+Route::post('/hotel/getPublishedAvailabilitiesByDate' , 'HotelsController@getPublishedAvailabilitiesByDate');

@@ -11,7 +11,6 @@
 </head>
 <body>
     @include('Hotel.includes.navbar')
-    {{-- @include('Hotel.includes.sidebar') --}}
     <div>
         @yield('page')
     </div>

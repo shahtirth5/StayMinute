@@ -7,6 +7,8 @@
 
 require('./bootstrap');
 require('../../../node_modules/owl.carousel2/dist/owl.carousel');
+require('../../../node_modules/jquery-timepicker/jquery.timepicker');
+require('../../../node_modules/bootstrap-datepicker/dist/js/bootstrap-datepicker');
 require('./script');
 
 

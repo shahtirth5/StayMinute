@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Apr 18, 2019 at 06:42 PM
+-- Generation Time: Apr 28, 2019 at 10:11 AM
 -- Server version: 10.1.36-MariaDB
 -- PHP Version: 7.2.10
 
@@ -48,6 +48,70 @@ INSERT INTO `hotels` (`hotel_id`, `hotel_name`, `hotel_email`, `hotel_password`,
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `hotel_availability`
+--
+
+CREATE TABLE `hotel_availability` (
+  `hotel_availability_id` int(11) NOT NULL,
+  `hotel_id` int(11) NOT NULL,
+  `start_date` date NOT NULL,
+  `start_time` time NOT NULL,
+  `end_date` date NOT NULL,
+  `end_time` time NOT NULL,
+  `pricing_per_hour` int(11) NOT NULL,
+  `room_type_id` int(11) NOT NULL,
+  `isBooked` int(1) NOT NULL DEFAULT '0',
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `hotel_availability`
+--
+
+INSERT INTO `hotel_availability` (`hotel_availability_id`, `hotel_id`, `start_date`, `start_time`, `end_date`, `end_time`, `pricing_per_hour`, `room_type_id`, `isBooked`, `created_at`, `updated_at`) VALUES
+(1, 1, '2019-04-28', '16:00:00', '2019-04-28', '17:00:00', 100, 2, 0, '2019-04-28 00:47:02', '2019-04-28 00:47:02'),
+(2, 1, '2019-04-28', '17:00:00', '2019-04-28', '18:00:00', 100, 2, 0, '2019-04-28 00:47:02', '2019-04-28 00:47:02');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `room_images`
+--
+
+CREATE TABLE `room_images` (
+  `room_image_id` int(11) NOT NULL,
+  `room_type_id` int(11) NOT NULL,
+  `room_image` mediumblob NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `room_types`
+--
+
+CREATE TABLE `room_types` (
+  `room_type_id` int(11) NOT NULL,
+  `hotel_id` int(11) NOT NULL,
+  `room_type_name` varchar(255) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `room_types`
+--
+
+INSERT INTO `room_types` (`room_type_id`, `hotel_id`, `room_type_name`, `created_at`, `updated_at`) VALUES
+(1, 1, 'Normal', '2019-04-28 04:59:23', '2019-04-28 04:59:23'),
+(2, 1, 'Deluxe', '2019-04-28 06:16:01', '2019-04-28 06:16:01');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `users`
 --
 
@@ -82,6 +146,24 @@ ALTER TABLE `hotels`
   ADD PRIMARY KEY (`hotel_id`);
 
 --
+-- Indexes for table `hotel_availability`
+--
+ALTER TABLE `hotel_availability`
+  ADD PRIMARY KEY (`hotel_availability_id`);
+
+--
+-- Indexes for table `room_images`
+--
+ALTER TABLE `room_images`
+  ADD PRIMARY KEY (`room_image_id`);
+
+--
+-- Indexes for table `room_types`
+--
+ALTER TABLE `room_types`
+  ADD PRIMARY KEY (`room_type_id`);
+
+--
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
@@ -96,6 +178,24 @@ ALTER TABLE `users`
 --
 ALTER TABLE `hotels`
   MODIFY `hotel_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `hotel_availability`
+--
+ALTER TABLE `hotel_availability`
+  MODIFY `hotel_availability_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `room_images`
+--
+ALTER TABLE `room_images`
+  MODIFY `room_image_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `room_types`
+--
+ALTER TABLE `room_types`
+  MODIFY `room_type_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `users`
